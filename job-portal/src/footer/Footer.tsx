@@ -4,12 +4,19 @@ import { faFileLines } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faFacebook, faInstagram, faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import { footerLinks } from "../Data/Data";
+import { useLocation } from "react-router-dom";
+import { Divider } from "@mantine/core";
 
 const Footer = () => {
+  const location=useLocation();
   return (
+    location.pathname!="/signup" &&
+    location.pathname!="/login"?
+    
     <div className="p-20  flex gap-5 justify-around bg-mine-shaft-950 font-sans">
-
+       
          <div className="w-1/4 flex flex-col gap-4">
+         
                 <div className="text-2xl font-semibold flex gap-2 items-center text-bright-sun-400">
                   <FontAwesomeIcon icon={faFileLines
                   } /> {/* Replacing Tabler Icon */}
@@ -35,7 +42,7 @@ const Footer = () => {
                   </div>
                 )
               }
-    </div>
+    </div>:<></>
   )
 }
 

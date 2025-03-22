@@ -4,8 +4,8 @@ import { Button, TagsInput } from "@mantine/core";
 import { fields } from "../Data/PostJobData"
 import { SelectInput } from "./SelectInput"
 import { TextEditor } from "./TextEditor";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const PostJob = () => {
     const select=fields;

@@ -15,7 +15,7 @@ const Companies = () => {
         <div className="text-5xl font-bold text-bright-sun-400">Featured Companies</div>
 
         {/* Right Side - Marquee Box */}
-        <div className="w-1/2 border-2 border-bright-sun-400 p-2 rounded-lg ">
+        <div className="w-1/2 border-2 border-bright-sun-400 p-2 rounded-lg bg-mine-shaft-500 ">
           <Marquee pauseOnHover={true}>
             {companyName.map((company, index) => (
               <div className="p-3 hover:bg-mine-shaft-900 rounded-xl cursor-pointer" key={index}>

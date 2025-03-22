@@ -36,6 +36,28 @@ export const jobList=[
         postedDaysAgo:12,
         description:"Meta is seeking a Product Designer to join our team. You'll be working on designing user-centric interfaces for our blockchain wallet platform.This is an excellent oppurtunity for entry-level designers to grow their skills in a dynamic enviroment."
     },
+    {
+        jobTitle: "Frontend Developer",
+        company: "Amazon",
+        applicants: 50,
+        experience: "Intermediate",
+        jobType: "Full-Time",
+        location: "Seattle",
+        package: "36 LPA",
+        postedDaysAgo: 10,
+        description: "Amazon is looking for a Frontend Developer to build and maintain our customer-facing applications. You will work with a dynamic team to create seamless and responsive web applications."
+      },
+      {
+        jobTitle: "Backend Developer",
+        company: "Google",
+        applicants: 21,
+        experience: "Entry Level",
+        jobType: "Full-Time",
+        location: "Bangalore",
+        package: "38 LPA",
+        postedDaysAgo: 8,
+        description: "Google is hiring a Backend Developer to join our team in Bangalore. You'll be responsible for developing scalable backend systems that power our services. This role requires strong problem-solving skills and experience with modern backend technologies."
+      },
    
         {
             jobTitle: "Software Engineer",
@@ -61,7 +83,7 @@ export const jobList=[
         },
         {
             jobTitle: "UI/UX Designer",
-            company: "netflix",
+            company: "Netflix",
             applicants: 20,
             experience: "Entry Level",
             jobType: "Full-Time",
@@ -83,7 +105,7 @@ export const jobList=[
         },
         {
             jobTitle: "Backend Developer",
-            company: "spotify",
+            company: "Spotify",
             applicants: 30,
             experience: "Senior Level",
             jobType: "Full-Time",

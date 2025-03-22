@@ -27,7 +27,7 @@ export const TextEditor=() =>{
 
   return (
     <RichTextEditor editor={editor}>
-      <RichTextEditor.Toolbar bg="mineShaft.10" sticky stickyOffset={60}>
+      <RichTextEditor.Toolbar bg="mineShaft.10"  stickyOffset={60}>
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />

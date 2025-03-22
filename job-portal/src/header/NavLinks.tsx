@@ -7,7 +7,9 @@ const NavLinks = () => {
     {name:"Find Jobs",url:"find-jobs"},
     {name:"Find Talent",url:"find-talent"},
     {name:"Post Job",url:"post-job"},
-    {name:"About Us",url:"about"}
+    {name:"Posted Job",url:"posted-job"},
+    {name:"Job History" ,url:"job-history"},
+    {name:"signup",url:"signup"}
   ]
   const location=useLocation()
   return (
@@ -17,7 +19,7 @@ const NavLinks = () => {
       <div className={`${location.pathname=="/"+link.url?"border-bright-sun-400 text-bright-sun-400":
         "border-transparent"
       }
-      border-[2px] p-2 rounded-full h-full`}>
+      border-b-[1px] p-2 rounded-lg h-full`}>
       <Link key={index} to={link.url}>{link.name}</Link>
       </div>)
     }

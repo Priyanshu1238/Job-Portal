@@ -6,8 +6,9 @@ import { ActionIcon, Button, Divider } from "@mantine/core"
 import { Link } from "react-router-dom"
 import { card, desc, skills } from "../Data/JobDescData"
 import DOMPurify from 'dompurify';
+import { faBookBookmark, faBookmark } from "@fortawesome/free-solid-svg-icons";
 // import RecommendedJobs from "./RecommendedJobs";
-const JobDesc = () => {
+const JobDesc = (props:any) => {
     const data=DOMPurify.sanitize(desc);
   return (
     <div className="w-2/3 p-2">
@@ -25,11 +26,13 @@ const JobDesc = () => {
                 
 
             </div>
-            <div className="mt-10">
+            <div className="flex mt-6 gap-3 items-center">
                 <Link to="/apply-job">
-                <Button color="brightSun.4" variant="light">Apply</Button>
+                <Button color="brightSun.4" variant="light">{props.edit?"Edit":"Apply"}</Button>
                 </Link>
-           
+                {props.edit?
+                <Button color="red.5" variant="outline">Delete</Button>
+                :<FontAwesomeIcon icon={faBookmark} className="text-bright-sun-400 h-5"/>}
             </div>
 
             
@@ -85,7 +88,7 @@ const JobDesc = () => {
 
             </div>
             <div className="flex flex-col gap-2 items-center">
-                <Link to="">
+                <Link to="/company">
                 <Button color="brightSun.4" variant="light">Company Page</Button>
                 </Link>
             </div>
