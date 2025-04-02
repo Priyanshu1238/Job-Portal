@@ -2,9 +2,10 @@
 
 import { faFileLines } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Signup from "../signupLogin/Signup"
-import Login from "../signupLogin/Login"
+
 import { useLocation } from "react-router-dom"
+import Signup from "../Components/signupLogin/Signup";
+import Login from "../Components/signupLogin/Login";
 
 const SignupPage = () => {
     const location=useLocation();

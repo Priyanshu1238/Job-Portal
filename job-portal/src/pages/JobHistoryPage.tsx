@@ -1,7 +1,8 @@
 // import Re/act from 'react'
 
 import { Divider } from "@mantine/core"
-import JobHistory from "../jobHistory/JobHistory"
+import JobHistory from "../Components/jobHistory/JobHistory"
+
 
 const JobHistoryPage = () => {
     return (

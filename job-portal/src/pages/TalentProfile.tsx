@@ -3,9 +3,11 @@ import { Link } from "react-router-dom"
 import { Button } from "@mantine/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import Profile from "../TalentProfile/Profile"
+
 import { profile } from "../Data/TalentData"
-import REcommendTalent from "../TalentProfile/REcommendTalent"
+import Profile from "../Components/TalentProfile/Profile"
+import REcommendTalent from "../Components/TalentProfile/REcommendTalent"
+
 
 
 const TalentProfile = () => {

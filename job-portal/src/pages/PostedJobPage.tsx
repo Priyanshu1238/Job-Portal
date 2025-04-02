@@ -1,7 +1,9 @@
 // import React from 'react'
 
-import PostedJob from "../postedJob/PostedJob"
-import PostedJobDesc from "../postedJob/PostedJobDesc"
+import PostedJob from "../Components/postedJob/PostedJob"
+import PostedJobDesc from "../Components/postedJob/PostedJobDesc"
+
+
 // import PostJob from "../postjob/PostJob"
 
 const PostedJobPage = () => {

@@ -1,8 +1,9 @@
 // import React from 'react'
 
 import { Divider } from "@mantine/core"
-import SerachBar from "../findTalent/SearchBar"
-import Talents from "../findTalent/Talents"
+import SerachBar from "../Components/findTalent/SearchBar"
+import Talents from "../Components/findTalent/Talents"
+
 
 // import SerachBar from "../FindJobs/SerachBar"
 

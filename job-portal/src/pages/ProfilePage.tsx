@@ -1,7 +1,8 @@
 // import React from 'react'
 
+import Profile from "../Components/profile/Profile"
 import { profile } from "../Data/TalentData"
-import Profile from "../profile/Profile"
+
 
 const ProfilePage = () => {
   return (

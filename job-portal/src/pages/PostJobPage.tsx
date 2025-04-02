@@ -1,4 +1,5 @@
-import PostJob from "../postjob/PostJob"
+import PostJob from "../Components/postjob/PostJob"
+
 
 
 

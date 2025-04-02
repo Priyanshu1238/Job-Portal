@@ -5,9 +5,10 @@ import { Link, useNavigate } from 'react-router-dom'
 // import Profile from '../TalentProfile/Profile'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import Company from '../Components/companyProfile/Company'
+import SimilarCompanies from '../Components/companyProfile/SimilarCompanies'
 // import { profile } from '../Data/TalentData'
-import Company from '../companyProfile/Company'
-import SimilarCompanies from '../companyProfile/SimilarCompanies'
+
 
 const CompanyPage = () => {
     const navigate=useNavigate();

@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 import { Button } from "@mantine/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import ApplyJobForm from "../applyJob/ApplyJobForm"
+import ApplyJobForm from "../Components/applyJob/ApplyJobForm"
+
 
 
 

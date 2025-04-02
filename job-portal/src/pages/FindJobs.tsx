@@ -1,8 +1,10 @@
 // import React from 'react'
 
+import Jobs from "../Components/FindJobs/Jobs"
+import SerachBar from "../Components/FindJobs/SerachBar"
+
 // import { Divider } from "@mantine/core"
-import Jobs from "../FindJobs/Jobs"
-import SerachBar from "../FindJobs/SerachBar"
+
 
 // import Footer from "../footer/Footer"
 // import Header from "..header/Header"
