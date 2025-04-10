@@ -1,8 +1,6 @@
 package com.jobportal.utility;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.jobportal.repository.UserRepository;
+import java.security.SecureRandom;
 
 public class Utilities {
 
@@ -12,4 +10,15 @@ public class Utilities {
 //	{
 //		
 //	}
+	public static String generateOTP()
+	{
+		StringBuilder otp=new StringBuilder();
+		SecureRandom random=new SecureRandom();
+		for(int i=0;i<6;i++)
+		{
+			otp.append(random.nextInt(10));
+			
+		}
+		return otp.toString();
+	}
 }

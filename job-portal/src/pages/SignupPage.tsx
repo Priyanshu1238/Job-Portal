@@ -1,16 +1,19 @@
 // import React from 'react'
 
-import { faFileLines } from "@fortawesome/free-solid-svg-icons"
+import { faArrowLeft, faFileLines } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import Signup from "../Components/signupLogin/Signup";
 import Login from "../Components/signupLogin/Login";
+import { Button } from "@mantine/core";
 
 const SignupPage = () => {
     const location=useLocation();
+    const navigate=useNavigate();
     return (
-        <div className="min-h-screen h-screen w-screen bg-mine-shaft-950 font-sans  overflow-hidden ">
+        <div className="min-h-screen h-screen w-screen bg-mine-shaft-950 font-sans  overflow-hidden relative">
+                <Button className="!absolute left-5 z-10" onClick={()=>navigate("/")} my="md" leftSection={<FontAwesomeIcon icon={faArrowLeft}/>} variant="light" color="brightSun.4">Home</Button>
 
             <div className="w-[100vw] h-[100vh] flex ">
                 

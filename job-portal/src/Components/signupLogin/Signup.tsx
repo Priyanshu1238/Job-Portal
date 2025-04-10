@@ -4,7 +4,7 @@ import { faAt, faCheck, faLock, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Anchor, Button, Checkbox, Group, PasswordInput, Radio, TextInput } from "@mantine/core"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { registerUser } from "../../Services/UserService"
 import { signupValidation } from "../../Services/FormValidation"
 import { notifications } from "@mantine/notifications"
@@ -21,6 +21,7 @@ const Signup = () => {
 
     const [data, setData] = useState<{ [key: string]: string }>(form);
     const [formError, setFormError] = useState<{ [key: string]: string }>(form);
+    const navigate = useNavigate();
     const handleChange = (event: any) => {
         if (typeof (event) == "string") {
             setData({ ...data, accountType: event });
@@ -56,6 +57,7 @@ const Signup = () => {
         if (valid === true) {
             registerUser(data).then((res) => {
                 console.log(res);
+                setData(form);
                 notifications.show({
                     title: 'Registered Successfully',
                     message: 'Redirecting to login page...',
@@ -65,9 +67,13 @@ const Signup = () => {
                     withBorder: true,
                     className: "!border-green-500"
                 })
+                setTimeout(() => {
+                    navigate("/login")
+                }, 4000)
+
 
             }).catch((err) => {
-               notifications.show({
+                notifications.show({
                     title: 'Registration failed',
                     message: err.response.data.errorMessage,
                     withCloseButton: true,
@@ -76,9 +82,9 @@ const Signup = () => {
                     withBorder: true,
                     className: "!border-red-500"
                 })
-            console.log(err.response.data)
+                console.log(err.response.data)
             })
-            
+
         }
     }
     return (
@@ -122,7 +128,7 @@ const Signup = () => {
 
             <Checkbox autoContrast label={<>I accept {' '}<Anchor>Terms and conditions</Anchor></>} />
             <Button onClick={handleSubmit} autoContrast variant="filled">Signup</Button>
-            <div className="mx-auto">Already have an account?<Link to="/login" className="text-bright-sun-400 hover:underline"> Login</Link></div>
+            <div className="mx-auto">Already have an account?<span onClick={() => { navigate("/login"); setFormError(form); setData(form) }} className="text-bright-sun-400 hover:underline cursor-pointer"> Login</span></div>
         </div>
     )
 }
