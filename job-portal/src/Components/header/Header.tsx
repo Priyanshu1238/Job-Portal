@@ -1,11 +1,13 @@
-import {  Indicator } from "@mantine/core";
+import {  Button, Indicator } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faFileLines, faGear } from "@fortawesome/free-solid-svg-icons"; // Import icons
 import NavLinks from "./NavLinks";
 import { Link, useLocation } from "react-router-dom";
 import { ProfileManager } from "./ProfileManager";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const user=useSelector((state:any)=>state.user);
   const location=useLocation();
   return (
     location.pathname!="/signup" &&
@@ -23,10 +25,15 @@ const Header = () => {
 
       <div className="flex gap-4 items-center">
         
-        <ProfileManager/>
-        <div className="bg-mine-shaft-700 p-1.5 rounded-full">
-          <FontAwesomeIcon icon={faGear} size="lg" /> {/* Replacing Tabler Icon */}
-        </div>
+        {user?<ProfileManager/>:
+        <Link to="/login">
+          <Button variant="subtle" color="brightSun.4">Login</Button>
+        </Link>
+        }
+
+        {/* <div className="bg-mine-shaft-700 p-1.5 rounded-full">
+          <FontAwesomeIcon icon={faGear} size="lg" /> 
+        </div> */}
         <div className="bg-mine-shaft-700 p-1.5 rounded-full">
           <Indicator color="brightSun.4" size={8} offset={6} processing>
             <FontAwesomeIcon icon={faBell} size="lg" /> {/* Replacing Tabler Icon */}

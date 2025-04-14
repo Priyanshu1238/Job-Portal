@@ -16,15 +16,23 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeUser } from '../../Slices/UserSlice';
 
 export const ProfileManager = () => {
+    const dispatch=useDispatch();
+    const user=useSelector((state:any)=>state.user);
     const [opened, setOpened] = useState(false);
     const [checked, setChecked] = useState(false);
+    const handleLogout=()=>{
+
+        dispatch(removeUser());
+    }
     return (
         <Menu opened={opened} onChange={setOpened} shadow="md" width={200}>
             <Menu.Target>
                 <div className="flex gap-1 items-center cursor-pointer">
-                    Priyanshu
+                    {user.name}
                     <Avatar src="avatar.jpg" alt="it's me" />
                 </div>
             </Menu.Target>
@@ -60,7 +68,7 @@ export const ProfileManager = () => {
 
                 <Menu.Divider />
 
-                <Menu.Item
+                <Menu.Item onClick={handleLogout}
                     color="red"
                     leftSection={<FontAwesomeIcon icon={faSignOutAlt} />}
                 >

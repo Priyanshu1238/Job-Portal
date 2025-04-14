@@ -36,12 +36,15 @@ public class UserServiceImpl implements UserService{
 	private JavaMailSender mailSender;
 	@Autowired
 	private OTPRepository otpRepo;
+	@Autowired
+	private ProfileService profileService;
 	
 	@Override
 	public UserDTO registerUser(UserDTO userDTO) throws JobPortalException {
 		// TODO Auto-generated method stub
 		Optional<User> optional=userRepository.findByEmail(userDTO.getEmail());
 		if(optional.isPresent()) throw new JobPortalException("USER_FOUND");
+		userDTO.setProfileId(profileService.createProfile(userDTO.getEmail()));
 		userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 		User user=userDTO.toEntity();
 		user=userRepository.save(user);

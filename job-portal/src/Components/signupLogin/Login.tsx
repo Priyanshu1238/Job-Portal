@@ -2,7 +2,7 @@
 
 import { faAt, faCheck, faLock, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Button, PasswordInput, TextInput } from "@mantine/core"
+import { Button, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../Services/UserService"
@@ -10,12 +10,18 @@ import { loginValidation } from "../../Services/FormValidation"
 import { notifications } from "@mantine/notifications"
 import { useDisclosure } from "@mantine/hooks"
 import ResetPassword from "./ResetPassword"
+import { useDispatch } from "react-redux"
+import { setUser } from "../../Slices/UserSlice"
 
-const form = {
-    email: "",
-    password: "",
-}
+
 const Login = () => {
+    const [loading,setLoading]=useState(false);
+    const dispatch=useDispatch();
+    const form = {
+   
+        email: "",
+        password: "",
+    }
     const [data, setData] = useState<{ [key: string]: string }>(form);
     const [formError, setFormError] = useState<{ [key: string]: string }>(form);
     const navigate = useNavigate();
@@ -25,6 +31,7 @@ setFormError({...formError,[event.target.name]:""});
         setData({ ...data, [event.target.name]: event.target.value })
     }
     const handleSubmit = () => {
+        
         let valid = true; let newFormError: { [key: string]: string } = {};
         for (let key in data) {
              newFormError[key] = loginValidation(key, data[key]);
@@ -32,6 +39,7 @@ setFormError({...formError,[event.target.name]:""});
         }
         setFormError(newFormError);
         if(valid){
+            setLoading(true);
             loginUser(data).then((res) => {
                 console.log(res);
                  notifications.show({
@@ -44,9 +52,12 @@ setFormError({...formError,[event.target.name]:""});
                                     className: "!border-green-500"
                                 })
                                 setTimeout(() => {
+                                    setLoading(false);
+                                    dispatch(setUser(res));
                                     navigate("/")
                                 }, 4000)
             }).catch((err) => {
+                            setLoading(false);
                             notifications.show({
                                 title: 'Something Wrong Please try again',
                                 message: err.response.data.errorMessage,
@@ -56,6 +67,7 @@ setFormError({...formError,[event.target.name]:""});
                                 withBorder: true,
                                 className: "!border-red-500"
                             })
+
                             console.log(err.response.data)
                         })
         }
@@ -63,6 +75,12 @@ setFormError({...formError,[event.target.name]:""});
     }
     return (
         <>
+        <LoadingOverlay
+          visible={loading}
+          zIndex={1000}
+          overlayProps={{ radius: 'sm', blur: 2 }}
+          loaderProps={{ color: 'brightSun.4', type: 'bars' }}
+        />
         <div className="w-1/2 px-20 flex flex-col justify-center gap-3">
             <div className="text-2xl font-semibold">Login to your Account</div>
 
@@ -79,7 +97,7 @@ setFormError({...formError,[event.target.name]:""});
             />
             <PasswordInput withAsterisk error={formError.password} value={data.password} onChange={handleChange} name="password" leftSection={<FontAwesomeIcon icon={faLock} />} label="Password" placeholder="Password" />
 
-            <Button onClick={handleSubmit} autoContrast variant="filled">Login</Button>
+            <Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Login</Button>
             <div className="mx-auto">New to Job~Matcher?<span onClick={() => { navigate("/signup"); setFormError(form); setData(form) }} className="text-bright-sun-400 hover:underline cursor-pointer"> SignUp</span></div>
             <div onClick={open} className="text-bright-sun-400 hover:underline cursor-pointer text-center">Forget Password?</div>
         </div>
