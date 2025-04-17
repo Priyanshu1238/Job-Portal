@@ -3,6 +3,7 @@
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { ActionIcon } from "@mantine/core"
+import { formatDate } from "../../Services/Utilities"
 
 
 
@@ -24,7 +25,7 @@ const CertCard = (props:any) => {
                     {/* <FontAwesomeIcon icon={faBookmark} className="cursor-pointer"/> */}
                     <div className="flex items-center gap-2">
                     <div className="flex flex-col items-end">
-                        <div  className="text-sm text-mine-shaft-300">{props.issueDate}</div>
+                        <div  className="text-sm text-mine-shaft-300">{formatDate(props.issueDate)}</div>
                         <div className="text-sm text-mine-shaft-300">ID: {props.certificateId}</div>
                     </div>
                     {props.edit&&<ActionIcon color="red.5" variant="subtle" aria-label="Settings">
