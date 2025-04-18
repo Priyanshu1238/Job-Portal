@@ -1,5 +1,6 @@
 package com.jobportal.entity;
 
+import java.util.Base64;
 import java.util.List;
 
 import com.jobportal.dto.Certification;
@@ -14,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +39,10 @@ public class Profile {
 
     @Column(length = 1000)
     private String about;
+    @Lob
+    @Column(name = "picture", columnDefinition = "LONGBLOB")
+    private byte[] picture;
+    
 
     @ElementCollection
     @CollectionTable(name = "profile_skills", joinColumns = @JoinColumn(name = "profile_id"))
@@ -54,6 +60,6 @@ public class Profile {
     private List<Certification> certifications;
 
     public ProfileDTO toDTO() {
-        return new ProfileDTO(this.id, this.email, this.jobTitle, this.company, this.location, this.about, this.skills, this.experiences, this.certifications);
+        return new ProfileDTO(this.id, this.email, this.jobTitle, this.company, this.location, this.about,this.picture!=null?Base64.getEncoder().encodeToString(this.picture):null, this.skills, this.experiences, this.certifications);
     }
 }

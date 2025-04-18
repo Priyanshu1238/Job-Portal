@@ -4,10 +4,26 @@ import { faBell, faFileLines, faGear } from "@fortawesome/free-solid-svg-icons";
 import NavLinks from "./NavLinks";
 import { Link, useLocation } from "react-router-dom";
 import { ProfileManager } from "./ProfileManager";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProfile } from "../../Services/ProfileService";
+import { setProfile } from "../../Slices/ProfileSlice";
 
 const Header = () => {
-  const user=useSelector((state:any)=>state.user);
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: any) => state.user);
+  // const profile = useSelector((state: any) => state.profile);
+  useEffect(() => {
+      // console.log(profile)
+      getProfile(user.profileId).then((data: any) => {
+          dispatch(setProfile(data));
+          console.log(data);
+
+      }).catch((err) => {
+          console.log(err);
+      });
+  }, [])
   const location=useLocation();
   return (
     location.pathname!="/signup" &&

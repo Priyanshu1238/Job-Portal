@@ -13,7 +13,7 @@ const Certificates = () => {
         const [edit,setEdit]=useState(false);
     const profile=useSelector((state:any)=>state.profile);
 
-        const handleEdit = (index: any) => {
+        const handleEdit = () => {
             setEdit(!edit);
             // const newEdit = [...edit];
             // newEdit[index] = !newEdit[index];
@@ -27,13 +27,13 @@ const Certificates = () => {
                 <ActionIcon onClick={() => setAddCert(true)} color="brightSun.4" variant="subtle" aria-label="Settings">
                         <FontAwesomeIcon icon={faPlus} className="h-4/5 w-4/5" />
                     </ActionIcon>
-                <ActionIcon onClick={() => handleEdit(4)} color={edit?"red.8":"brightSun.4"}  variant="subtle" aria-label="Settings">
+                <ActionIcon onClick={() => handleEdit()} color={edit?"red.8":"brightSun.4"}  variant="subtle" aria-label="Settings">
                         {edit ? <FontAwesomeIcon icon={faX} className="h-4/5 w-4/5" /> : <FontAwesomeIcon icon={faPencil} className="h-4/5 w-4/5" />}
                     </ActionIcon></div>
                 </div>
                 <div className="flex flex-col gap-8">
                     {
-                        profile?.certifications?.map((cert: any, index: any) => <CertCard key={index} edit={edit} {...cert} />)
+                        profile?.certifications?.map((cert: any, index: any) => <CertCard key={index} edit={edit} index={index} {...cert} />)
                     }
                     {
                         addCert&&<CertInput setEdit={setAddCert}/>

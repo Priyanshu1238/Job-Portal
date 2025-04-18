@@ -28,12 +28,13 @@ export const ProfileManager = () => {
 
         dispatch(removeUser());
     }
+    const profile=useSelector((state:any)=>state.profile)
     return (
         <Menu opened={opened} onChange={setOpened} shadow="md" width={200}>
             <Menu.Target>
                 <div className="flex gap-1 items-center cursor-pointer">
                     {user.name}
-                    <Avatar src="avatar.jpg" alt="it's me" />
+                    <Avatar src={profile.picture?`data:image/jpeg;base64,${profile.picture}`:"/avatar.jpg"}  alt="it's me" />
                 </div>
             </Menu.Target>
 
