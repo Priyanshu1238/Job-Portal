@@ -25,14 +25,14 @@ const PostedJobDesc = () => {
             <JobDesc edit />
           </Tabs.Panel>
           <Tabs.Panel value="applicants">
-            <div className="mt-10 flex flex-wrap gap-10 justify-around">
+            <div className="mt-10 flex flex-wrap justify-between gap-2">
               {
                 talents.map((talent, index) => index < 6 && <TalentCard key={index} {...talent} posted />)
               }
             </div>
           </Tabs.Panel>
           <Tabs.Panel value="invited">
-          <div className="mt-10 flex flex-wrap gap-10 justify-around">
+          <div className="mt-10 flex flex-wrap gap-2 justify-between">
               {
                 talents.map((talent, index) => index < 6 && <TalentCard key={index} {...talent} invited />)
               }

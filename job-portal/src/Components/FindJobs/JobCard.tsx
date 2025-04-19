@@ -5,6 +5,7 @@ import { faBookmark, faClock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Divider, Text } from "@mantine/core"
 import { Link } from "react-router-dom"
+import { timeAgo } from "../../Services/Utilities"
 
 const JobCard = (props:any) => {
   return (
@@ -16,7 +17,7 @@ const JobCard = (props:any) => {
                     </div>
                 <div>
                     <div className="font-semibold text-lg">{props.jobTitle}</div>
-                    <div className="text-xs text-mine-shaft-300">{props.company} &#x2022; {props.applicants} Applicants</div>
+                    <div className="text-xs text-mine-shaft-300">{props.company} &#x2022; {props.applicants?props.applicants.length:0} Applicants</div>
                 </div>
             </div>
             <FontAwesomeIcon icon={faBookmark} className="cursor-pointer"/>
@@ -28,15 +29,15 @@ const JobCard = (props:any) => {
         </div>
         <Text className="!text-sm !text-mine-shaft-300 text-justify" lineClamp={3}>
             {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione ipsa excepturi rem totam amet deleniti recusandae repellendus, est earum voluptatum, cumque suscipit? */}
-            {props.description}
+            {props.about}
         </Text>
         <Divider  size="xs" color="mineShaft.5" />
         <div className="flex justify-between ">
             <div className="font-semibold text-mine-shaft-200">
-            &#8377;{props.package}
+            &#8377;{props.packageOffered} LPA
             </div>
             <div className="flex gap-1 items-center text-xs text-mine-shaft-400">
-                <FontAwesomeIcon icon={faClock}/>{props.postedDaysAgo} days ago
+                <FontAwesomeIcon icon={faClock}/>Posted {timeAgo(props.postTime)}
             </div>
         </div>
     </Link>
