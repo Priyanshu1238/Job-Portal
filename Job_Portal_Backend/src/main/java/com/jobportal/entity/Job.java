@@ -3,10 +3,10 @@ package com.jobportal.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.jobportal.dto.Applicant;
 import com.jobportal.dto.JobDTO;
 import com.jobportal.dto.JobStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,7 @@ public class Job {
 	@ElementCollection
     @CollectionTable(name = "job_applicants", joinColumns = @JoinColumn(name = "job_id"))
     @Column(name = "applicants", length = 255)
+//	 @OneToMany(mappedBy = "job", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Applicant> applicants;
 	@Column(length = 1000)
 	private String about;
@@ -53,6 +55,9 @@ public class Job {
 	
 	public JobDTO toDTO()
 	{
-		return new JobDTO(this.id,this.jobTitle,this.company,this.applicants,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
+		return new JobDTO(this.id,this.jobTitle,this.company,this.applicants!=null?this.applicants.stream().map(e->e.toDTO()).toList():null,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
 	}
-}
+}      
+
+
+

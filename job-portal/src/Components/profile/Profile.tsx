@@ -21,6 +21,7 @@ import Experiences from "./Experiences"
 import Certificates from "./Certificates"
 import { useHover } from "@mantine/hooks"
 import { successNotification } from "../../Services/NotificationSErvice"
+import { getBase64 } from "../../Services/Utilities"
 
 
 
@@ -51,15 +52,7 @@ const Profile = (props: any) => {
         // console.log(updatedProfile);
         successNotification("Success", "Profile Picture updated successfully");
     }
-    const getBase64 = (file: any) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-
-        })
-    }
+    
     return (
         <div className="w-4/5 mx-auto mt-2">
             <div>

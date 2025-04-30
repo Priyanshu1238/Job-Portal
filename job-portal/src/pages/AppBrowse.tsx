@@ -23,10 +23,10 @@ export const AppRoutes=()=>{
           <Routes>
             <Route path='/find-jobs' element={<FindJobs  />} />
             <Route path='/find-talent' element={<FindTalents />} />
-            <Route path='/jobs' element={<JobDescPage />} />
-            <Route path='/apply-job' element={<ApplyJobPage />} />
+            <Route path='/jobs/:id' element={<JobDescPage />} />
+            <Route path='/apply-job/:id' element={<ApplyJobPage />} />
 
-            <Route path='/company' element={<CompanyPage />} />
+            <Route path='/company/:id' element={<CompanyPage />} />
             <Route path='/posted-job' element={<PostedJobPage />} />
 
 

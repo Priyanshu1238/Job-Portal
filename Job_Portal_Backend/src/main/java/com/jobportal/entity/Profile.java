@@ -59,7 +59,11 @@ public class Profile {
     @Column(name = "certification", length = 255)
     private List<Certification> certifications;
 
+    @ElementCollection
+    @CollectionTable(name = "profile_savedJobs", joinColumns = @JoinColumn(name = "profile_id"))
+    @Column(name = "savedJobs", length = 255)
+    private List<Long>savedJobs;
     public ProfileDTO toDTO() {
-        return new ProfileDTO(this.id, this.email, this.jobTitle, this.company, this.location, this.about,this.picture!=null?Base64.getEncoder().encodeToString(this.picture):null, this.skills, this.experiences, this.certifications);
+        return new ProfileDTO(this.id, this.email, this.jobTitle, this.company, this.location, this.about,this.picture!=null?Base64.getEncoder().encodeToString(this.picture):null, this.skills, this.experiences, this.certifications,this.savedJobs);
     }
 }
