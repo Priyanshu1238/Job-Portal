@@ -5,13 +5,15 @@ import { content, fields } from "../../Data/PostJobData"
 import { SelectInput } from "./SelectInput"
 import { TextEditor } from "./TextEditor";
 import { isNotEmpty, useForm } from "@mantine/form";
-import { postJob } from "../../Services/JobServices";
+import {  postJob } from "../../Services/JobServices";
 import { errorNotification, successNotification } from "../../Services/NotificationSErvice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const PostJob = () => {
+    const profile=useSelector((state:any)=>state.user);
     const navigate=useNavigate();
     const select=fields;
     const form=useForm({
@@ -46,12 +48,21 @@ const PostJob = () => {
 
         form.validate();
         if(!form.isValid())return;
-        postJob(form.getValues()).then((res)=>{
+        postJob({...form.getValues(), postedBy:profile.id, jobStatus:"ACTIVE"}).then((res)=>{
             successNotification("Successs","Job Posted Successfully");
-            navigate("/posted-job")
+            navigate(`/posted-job/${res.id}`)
         }).catch((err)=>{
             console.log(err);
             errorNotification("Post Failed",err.response.data.errorMessage);
+        })
+    }
+    const handleDraft=()=>{
+        postJob({...form.getValues(), postedBy:profile.id, jobStatus:"DRAFT"}).then((res)=>{
+            successNotification("Successs","Job Drafted Successfully");
+            navigate(`/posted-job/${res.id}`)
+        }).catch((err)=>{
+            console.log(err);
+            errorNotification("Failed",err.response.data.errorMessage);
         })
     }
   return (
@@ -82,7 +93,7 @@ const PostJob = () => {
             </div>
             <div className="flex gap-3"> 
                 <Button  variant="light" color="brightSun.4" onClick={hanlePost}>Publish Job</Button>
-                <Button  variant="outline" color="brightSun.4">Save as Draft</Button>
+                <Button  variant="outline"  onClick={handleDraft} color="brightSun.4">Save as Draft</Button>
                    
             </div>
         </div>

@@ -6,16 +6,16 @@ import java.util.List;
 import com.jobportal.dto.JobDTO;
 import com.jobportal.dto.JobStatus;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -51,11 +51,14 @@ public class Job {
     @CollectionTable(name = "job_skillsRequired", joinColumns = @JoinColumn(name = "job_id"))
     @Column(name = "skillsRequired", length = 255)
 	private List<String> skillsRequired;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "job_status")
 	private JobStatus jobStatus;
+	private Long postedBy;
 	
 	public JobDTO toDTO()
 	{
-		return new JobDTO(this.id,this.jobTitle,this.company,this.applicants!=null?this.applicants.stream().map(e->e.toDTO()).toList():null,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus);
+		return new JobDTO(this.id,this.jobTitle,this.company,this.applicants!=null?this.applicants.stream().map(e->e.toDTO()).toList():null,this.about,this.experience,this.jobType,this.location,this.packageOffered,this.postTime,this.description,this.skillsRequired,this.jobStatus,this.postedBy);
 	}
 }      
 

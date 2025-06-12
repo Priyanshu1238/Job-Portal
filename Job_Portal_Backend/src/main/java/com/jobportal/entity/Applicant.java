@@ -9,12 +9,9 @@ import com.jobportal.dto.ApplicationStatus;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,7 +43,9 @@ public class Applicant {
 	private String linkedIn;
 	private String coverLetter;
 	private LocalDateTime timestamp;
+	@Enumerated(EnumType.STRING)
 	private ApplicationStatus applicationStatus;
+	private LocalDateTime interviewTime;
 //	private Long jobid;
 	
 //	private Long job_id;
@@ -75,7 +74,7 @@ public class Applicant {
 	
 	
 	public ApplicantDTO toDTO() {
-		return new ApplicantDTO(this.applicantId,this.name,this.email,this.phone,this.website,this.resume!=null?Base64.getEncoder().encodeToString(this.resume):null,this.github,this.linkedIn,this.coverLetter,this.timestamp,this.applicationStatus);
+		return new ApplicantDTO(this.applicantId,this.name,this.email,this.phone,this.website,this.resume!=null?Base64.getEncoder().encodeToString(this.resume):null,this.github,this.linkedIn,this.coverLetter,this.timestamp,this.applicationStatus,this.interviewTime);
 	}
 
 //	public Applicant(Long applicantId, String name, String email, Long phone, String website, byte[] resume,

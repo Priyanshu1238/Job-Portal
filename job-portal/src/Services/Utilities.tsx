@@ -46,4 +46,15 @@ function timeAgo(time:any) {
 
     })
 }
-export {formatDate,timeAgo,getBase64};
+const formatInterviewTime=(dateStr:any)=>{
+  const date=new Date(dateStr);
+  return date.toLocaleString('en-US',{
+    year:'numeric',
+    month:'long',
+    day:'numeric',
+    hour:'numeric',
+    minute:'numeric',
+    hour12:true
+  });
+}
+export {formatDate,timeAgo,getBase64,formatInterviewTime};

@@ -28,10 +28,12 @@ public class ApplicantDTO {
 	private String coverLetter;
 	private LocalDateTime timestamp;
 	private ApplicationStatus applicationStatus;
+	private LocalDateTime interviewTime;
+
 //	private Long job_id;
 	public Applicant toEntity() {
 		// TODO Auto-generated method stub
-		return new Applicant(this.applicantId,this.name,this.email,this.phone,this.website,this.resume!=null?Base64.getDecoder().decode(this.resume):null,this.github,this.linkedIn,this.coverLetter,this.timestamp,this.applicationStatus);
+		return new Applicant(this.applicantId,this.name,this.email,this.phone,this.website,this.resume!=null?Base64.getDecoder().decode(this.resume):null,this.github,this.linkedIn,this.coverLetter,this.timestamp,this.applicationStatus,this.interviewTime);
 	}
 //	public applicantdto(long applicantid, string name, string email, long phone, string website, string resume,
 //			string github, string linkedin, string coverletter, localdatetime timestamp,
