@@ -13,13 +13,14 @@ import { useSelector } from "react-redux";
 import { getProfile } from "../../Services/ProfileService";
 import { errorNotification, successNotification } from "../../Services/NotificationSErvice";
 import { changeApplicationStatus } from "../../Services/JobServices";
-import { formatInterviewTime } from "../../Services/Utilities";
+import { formatInterviewTime, openResumeInNewTab } from "../../Services/Utilities";
 
 const TalentCard = (props: any) => {
     const {id}=useParams();
     const [date, setDate] = useState<Date | null>(null);
     const[time,setTime]=useState<any>(null);
     const [opened, { open, close }] = useDisclosure(false);
+    const [app, {open:openApp,close:closeApp} ]=useDisclosure(false);
     const ref=useRef<HTMLInputElement>(null);
     const [profile,setProfile]=useState<any>({});
     useEffect(()=>{
@@ -31,12 +32,20 @@ const TalentCard = (props: any) => {
         else setProfile(props);
     },[props])
     const handleOffer=(status:string)=>{
-        const[hours,minutes]=time.split(":").map(Number);
-        date?.setHours(hours,minutes);
+              let interview:any={id,applicantId:profile?.id,applicationStatus:status};
+              if(status=="INTERVIEWING")
+              {
+                        const[hours,minutes]=time.split(":").map(Number);
+                        date?.setHours(hours,minutes);
+                        interview={...interview,interviewTime:date?.toISOString()};
+              }
+
         // console.log(date)
-        let interview:any={id,applicantId:profile?.id,applicationStatus:status,interviewTime:date?.toISOString()}
+  
         changeApplicationStatus(interview).then((res)=>{
-            successNotification("Interview Scheduled ","Interview Scheduled successfully")
+            if(status=="INTERVIEWING")successNotification("Interview Scheduled ","Interview Scheduled successfully");
+            else if(status=="OFFERED")successNotification("OFFERED ","Offered has been sent sucessfully");
+            else successNotification("Rejected ","Applicant has been rejected");
             window.location.reload();
         }).catch((err)=>{
             console.log(err);
@@ -77,7 +86,7 @@ const TalentCard = (props: any) => {
                 </div>:
                 <div className="flex justify-between ">
                 <div className="font-semibold text-mine-shaft-200">
-                    {/* {props.expectedCtc} */}23 LPA
+                    {/* {props.expectedCtc} */}Experience : {profile.totalExp?profile.totalExp:0} years
                 </div>
                 <div className="flex gap-1 items-center text-sm text-mine-shaft-300">
                     <FontAwesomeIcon icon={faMapMarkerAlt} />{profile?.location}
@@ -89,7 +98,7 @@ const TalentCard = (props: any) => {
             <div className="flex [&>*]:w-1/2 [&>*]:p-1 ">
             {!props.invited&&
                 <>
-                 <Link to="/talent-profile">
+                 <Link to={`/talent-profile/${profile?.id}`}>
                     <Button color="brightSun.4" variant="outline" fullWidth>Profile</Button></Link>
                 <div>
                     {props.posted?
@@ -102,16 +111,21 @@ const TalentCard = (props: any) => {
                 props.invited &&
                 <>
                 <div>
-                <Button color="brightSun.4" variant="outline" fullWidth>Accept</Button>
+                <Button color="brightSun.4" variant="outline" onClick={()=>handleOffer("OFFERED")} fullWidth>Accept</Button>
                 </div>
                 <div>
-                <Button color="brightSun.4" variant="light" fullWidth>Reject</Button>
+                <Button color="brightSun.4" variant="light" onClick={()=>handleOffer("REJECT")} fullWidth>Reject</Button>
                 </div>
                 </>
             }
                
 
             </div>
+            {
+                (props.invited || props.posted)&&
+                <Button color="brightSun.4" variant="light" onClick={openApp} fullWidth autoContrast>View Application</Button>
+                
+            }
             <Modal  opened={opened} onClose={close} title="Schedule Interview" >
                 {/* Modal content */}
                 <div className="flex flex-col gap-4">
@@ -125,6 +139,23 @@ const TalentCard = (props: any) => {
                     />
                      <TimeInput label="Time" value={time} onChange={(event)=>setTime(event.currentTarget.value)} minTime="" ref={ref} onClick={()=>ref.current?.showPicker()}/>
                      <Button onClick={()=>handleOffer("INTERVIEWING")}color="brightSun.4" variant="light" fullWidth>Schedule</Button>
+                </div>
+            </Modal>
+            <Modal  opened={app} onClose={closeApp} title="view Applicant" >
+                {/* Modal content */}
+                <div className="">
+                    <div>
+                    Email: &emsp;<a className="text-bright-sun-400 hover:underline cursor-pointer text-center" href={`mailto:${props.email}`}>{props.email}</a>
+                </div>
+                <div >
+                    Website:&emsp;<a target="_blank" className="text-bright-sun-400 hover:underline cursor-pointer text-center" href={props.Website}>{props.Website}</a>
+                </div>
+                <div >
+                    Resume:&emsp;<span className="text-bright-sun-400 hover:underline cursor-pointer text-center" onClick={()=>openResumeInNewTab(props.resume)}>{props.name}</span>
+                </div>
+                 <div >
+                    Cover Letter:&emsp;<div>{props.coverLetter}</div>
+                </div>
                 </div>
             </Modal>
         </div>

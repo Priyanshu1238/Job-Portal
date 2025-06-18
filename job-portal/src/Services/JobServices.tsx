@@ -5,6 +5,11 @@ const postJob=async (job:any)=>{
     .then(res=>res.data)
     .catch(error=>{throw error;});
 }
+const postJobwithid=async (job:any)=>{
+    return axios.post(`${base_url}postwithid`,job)
+    .then(res=>res.data)
+    .catch(error=>{throw error;});
+}
 const getAllJobs=async ()=>{
     return axios.get(`${base_url}getall`)
     .then(res=>res.data)
@@ -30,4 +35,4 @@ const changeApplicationStatus=async (application:any)=>{
     .then(res=>res.data)
     .catch(error=>{throw error;});
 }
-export{postJob,getAllJobs,getJob,applyJob,getJobPostedBy,changeApplicationStatus}
+export{postJob,getAllJobs,getJob,applyJob,getJobPostedBy,changeApplicationStatus,postJobwithid}

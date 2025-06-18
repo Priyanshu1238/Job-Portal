@@ -63,7 +63,7 @@ const Info = (props: any) => {
     }
     const form = useForm({
         mode: 'controlled',
-        initialValues: { jobTitle: '', company: '', location: '' },
+        initialValues: { jobTitle: '', company: '', location: ''},
 
     });
     const handleSave=()=>{
@@ -95,7 +95,12 @@ const Info = (props: any) => {
                     <div className="text-xl flex ">{profile.company} &bull; {profile.jobTitle}</div>
                     <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
                         <FontAwesomeIcon icon={faMapMarkerAlt} />  {profile.location}
-                    </div></>
+                        
+                    </div>
+                    
+                    
+                    
+                    </>
             }
 
 

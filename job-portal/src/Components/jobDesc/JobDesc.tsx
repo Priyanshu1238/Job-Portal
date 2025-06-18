@@ -12,6 +12,8 @@ import { timeAgo } from "../../Services/Utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { changeProfile } from "../../Slices/ProfileSlice";
 import { useEffect, useState } from "react";
+import { postJob } from "../../Services/JobServices";
+import { errorNotification, successNotification } from "../../Services/NotificationSErvice";
 // import RecommendedJobs from "./RecommendedJobs";
 const JobDesc = (props:any) => {
     const [applied,setApplied]=useState(false);
@@ -37,7 +39,15 @@ const JobDesc = (props:any) => {
             setApplied(false)
         }
     },[props])
+const handleClose=()=>{
 
+    postJob({...props,jobStatus:"CLOSE"}).then((res)=>{
+        successNotification("success","Job close sucessfully")
+
+    }).catch((err)=>{
+        errorNotification("error", err.response.data.errorMessage)
+    })
+}
   return (
     <div className="w-2/3 p-2">
 
@@ -56,15 +66,15 @@ const JobDesc = (props:any) => {
             </div>
             <div className="flex mt-6 gap-3 items-center">
                {(props.edit || !applied) &&
-                <Link to={`/apply-job/${props.id}`}>
-                <Button color="brightSun.4" variant="light">{props.edit?"Edit":"Apply"}</Button>
+                <Link to={props.edit?`/post-job/${props.id}`:`/apply-job/${props.id}`}>
+                <Button color="brightSun.4" variant="light">{props.close?"Reopen": props.edit?"Edit":"Apply"}</Button>
                 </Link>}
-                {applied &&
+                {!props.edit && applied &&
                 <Button color="green.8" variant="light">Applied</Button>
 
                 }
-                {props.edit?
-                <Button color="red.5" variant="outline">Delete</Button>
+                {props.edit && !props.close?
+                <Button onClick={handleClose} color="red.5" variant="outline">Close</Button>
                 :profile.savedJobs?.includes(props.id)?
                     <FontAwesomeIcon onClick={handleSaveJob} icon={faBookBookmark} className="cursor-pointer text-bright-sun-400"/>:<FontAwesomeIcon onClick={handleSaveJob} icon={faBookmark} className="cursor-pointer hover:text-bright-sun-400"/>
                 }
@@ -103,6 +113,7 @@ const JobDesc = (props:any) => {
                 </div>
             </div>
             <Divider my="xl"/>
+            <div className="text-xl font-semibold mb-5">Description</div>
             <div className="[&_h4]:text-xl [&_*]:text-mine-shaft-300 [&_li]:marker:text-bright-sun-400 [&_li]:mb-1 [&_h4]:my-5 [&_h4]:font-semibold [&_h4]:text-mine-shaft-200 [&_p]:text-justify " dangerouslySetInnerHTML={{__html:data}}>
 
             </div>

@@ -33,6 +33,7 @@ public class Profile {
     private long id;
 
     private String email;
+    private String name;
     private String jobTitle;
     private String company;
     private String location;
@@ -44,6 +45,7 @@ public class Profile {
     private byte[] picture;
     
 
+    private Long totalExp;
     @ElementCollection
     @CollectionTable(name = "profile_skills", joinColumns = @JoinColumn(name = "profile_id"))
     @Column(name = "skill", length = 255)
@@ -64,6 +66,6 @@ public class Profile {
     @Column(name = "savedJobs", length = 255)
     private List<Long>savedJobs;
     public ProfileDTO toDTO() {
-        return new ProfileDTO(this.id, this.email, this.jobTitle, this.company, this.location, this.about,this.picture!=null?Base64.getEncoder().encodeToString(this.picture):null, this.skills, this.experiences, this.certifications,this.savedJobs);
+        return new ProfileDTO(this.id, this.name,this.email, this.jobTitle, this.company, this.location, this.about,this.picture!=null?Base64.getEncoder().encodeToString(this.picture):null,this.totalExp, this.skills, this.experiences, this.certifications,this.savedJobs);
     }
 }

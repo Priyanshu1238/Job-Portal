@@ -16,9 +16,10 @@ const PostedJob = (props:any) => {
          <div>
               <Tabs autoContrast variant="pills" value={activeTab} onChange={setActiveTab}>
 
-                  <Tabs.List className="[&_button[aria-selected='false']]:bg-mine-shaft-900 font-medium">
-                      <Tabs.Tab value="ACTIVE">Active [{props.jobList?.filter((job:any)=>job?.jobStatus==activeTab).length}]</Tabs.Tab>
-                      {/* <Tabs.Tab value="DRAFT">Draft [{props.jobList?.filter((job:any)=>job?.jobStatus==activeTab).length}]</Tabs.Tab> */}
+                  <Tabs.List className="[&_button[aria-selected='false']]:bg-mine-shaft-900 font-medium ">
+                      <Tabs.Tab value="ACTIVE">Active [{props.jobList?.filter((job:any)=>job?.jobStatus=="ACTIVE").length}]</Tabs.Tab>
+                      <Tabs.Tab value="CLOSE">Closed [{props.jobList?.filter((job:any)=>job?.jobStatus=="CLOSE").length}]</Tabs.Tab>
+                    {/* <Tabs.Tab value="DRAFT">Draft [{props.jobList?.filter((job:any)=>job?.jobStatus==activeTab).length}]</Tabs.Tab>  */}
                   </Tabs.List>
                 </Tabs>
                 </div>

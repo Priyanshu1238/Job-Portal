@@ -1,6 +1,7 @@
 package com.jobportal.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,11 @@ public class ProfileServiceImpl implements ProfileService{
 	@Autowired
 	private ProfileRepository profileRepo;
 	@Override
-	public Long createProfile(String email) {
+	public Long createProfile(String email,String name) {
 		// TODO Auto-generated method stub
 		Profile profile=new Profile();
 		profile.setEmail(email);
+		profile.setName(name);
 		profile.setSkills(new ArrayList<>());
 		profile.setExperiences(new ArrayList<>());
 		profile.setCertifications(new ArrayList<>());
@@ -39,6 +41,11 @@ public class ProfileServiceImpl implements ProfileService{
 		profileRepo.save(profileDTO.toEntity());
 		
 		return profileDTO;
+	}
+	@Override
+	public List<ProfileDTO> getAllProfiles() {
+		// TODO Auto-generated method stub
+		return profileRepo.findAll().stream().map((x)->x.toDTO()).toList();
 	}
 	
 

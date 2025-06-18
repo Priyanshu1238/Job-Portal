@@ -18,7 +18,7 @@ const Header = () => {
       // console.log(profile)
       getProfile(user.profileId).then((data: any) => {
           dispatch(setProfile(data));
-          console.log(data);
+          // console.log(data);
 
       }).catch((err) => {
           console.log(err);

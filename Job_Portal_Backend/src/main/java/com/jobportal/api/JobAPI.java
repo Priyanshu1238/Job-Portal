@@ -37,6 +37,12 @@ public class JobAPI {
 		return new ResponseEntity<>(jobService.postJob(jobDTO),HttpStatus.CREATED);
 		
 	}
+	@PostMapping("/postwithid")
+	public ResponseEntity<JobDTO> postJobWithid(@RequestBody @Valid JobDTO jobDTO) throws Exception
+	{
+		return new ResponseEntity<>(jobService.postJobwithId(jobDTO),HttpStatus.CREATED);
+		
+	}
 	
 	@GetMapping("/getall")
 	public ResponseEntity<List<JobDTO>> getAllJobs() throws JobPortalException
