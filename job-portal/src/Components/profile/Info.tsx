@@ -1,8 +1,8 @@
 // import React from 'react'
 
-import { faCheck, faMapMarkerAlt, faPencil, faPlus, faSave, faX } from "@fortawesome/free-solid-svg-icons"
+import { faBriefcase, faCheck, faMapMarkerAlt, faPencil, faPlus, faSave, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ActionIcon, Divider, TagsInput, Textarea } from "@mantine/core"
+import { ActionIcon, Divider, NumberInput, TagsInput, Textarea } from "@mantine/core"
 import ExpCard from "./ExpCard"
 import CertCard from "./CertCard"
 import { useEffect, useState } from "react"
@@ -54,7 +54,7 @@ const Info = (props: any) => {
     const handleClick = () => {
         if (!edit) {
             setEdit(true);
-            form.setValues({jobTitle:profile.jobTitle,company:profile.company,location:profile.location})
+            form.setValues({jobTitle:profile.jobTitle,company:profile.company,location:profile.location,totalExp:profile.totalExp})
         }
         else {
             setEdit(false);
@@ -63,7 +63,7 @@ const Info = (props: any) => {
     }
     const form = useForm({
         mode: 'controlled',
-        initialValues: { jobTitle: '', company: '', location: ''},
+        initialValues: { jobTitle: '', company: '', location: '',totalExp: 0},
 
     });
     const handleSave=()=>{
@@ -74,6 +74,7 @@ const Info = (props: any) => {
         successNotification("Success","Profile updated successfully");
     }
     return (
+         user!=null &&
         <div className="px-3 mt-16 ">
             <div className="text-3xl font-semibold flex justify-between">{user.name}
                 <div>{edit&&
@@ -91,10 +92,19 @@ const Info = (props: any) => {
                     <SelectInput form={form} name="jobTitle" {...select[0]} />
                     <SelectInput form={form} name="company" {...select[1]} />
                 </div>
-                    <SelectInput form={form} name="location" {...select[2]} /></> : <>
+                <div className="flex gap-10 [&>*]:w-1/2">
+                    <SelectInput form={form} name="location" {...select[2]} />
+                    <NumberInput withAsterisk hideControls min={0} max={60} clampBehavior="strict" label="Total Experience" {...form.getInputProps('totalExp')} />
+
+                </div>
+                    </> : <>
                     <div className="text-xl flex ">{profile.company} &bull; {profile.jobTitle}</div>
                     <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
                         <FontAwesomeIcon icon={faMapMarkerAlt} />  {profile.location}
+                        
+                    </div>
+                    <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
+                        <FontAwesomeIcon icon={faBriefcase} />Experience:  {profile.totalExp} years
                         
                     </div>
                     

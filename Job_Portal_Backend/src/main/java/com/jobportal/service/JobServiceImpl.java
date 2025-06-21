@@ -13,6 +13,7 @@ import com.jobportal.dto.Application;
 import com.jobportal.dto.ApplicationStatus;
 import com.jobportal.dto.JobDTO;
 import com.jobportal.dto.JobStatus;
+import com.jobportal.dto.NotificationDTO;
 import com.jobportal.entity.Applicant;
 import com.jobportal.entity.Job;
 import com.jobportal.exception.JobPortalException;
@@ -28,6 +29,8 @@ public class JobServiceImpl implements JobService {
 	
 //	@Autowired
 //	private ApplicantRepository applicantRepo;
+	@Autowired
+	private NotificationService notificationService;
 	
 
 	@Override
@@ -36,7 +39,21 @@ public class JobServiceImpl implements JobService {
 		
 			jobDTO.setPostTime(LocalDateTime.now());
 			
+			
+			NotificationDTO notificationDTOObj=new NotificationDTO();
+			notificationDTOObj.setAction("Post Job");
+			notificationDTOObj.setMessage("Job Posted Sucessfully for : "+jobDTO.getJobTitle());
+			notificationDTOObj.setUserId(jobDTO.getPostedBy());
+			notificationDTOObj.setRoute("/posted-job/"+jobDTO.getId());
+		
+			notificationService.sendNotification(notificationDTOObj);
+			
+			
 			return jobRepo.save(jobDTO.toEntity()).toDTO();
+			
+			
+			
+			
 	}
 	@Override
 	public JobDTO postJobwithId(JobDTO jobDTO) throws JobPortalException {
@@ -98,7 +115,17 @@ Job job=jobRepo.findById(application.getId()).orElseThrow(()->new JobPortalExcep
 			if(application.getApplicantId()==x.getApplicantId())
 			{
 				x.setApplicationStatus(application.getApplicationStatus());
-				if(application.getApplicationStatus().equals(ApplicationStatus.INTERVIEWING))x.setInterviewTime(application.getInterviewTime());
+				if(application.getApplicationStatus().equals(ApplicationStatus.INTERVIEWING)) { 
+					x.setInterviewTime(application.getInterviewTime());
+					NotificationDTO notificationDTOObj=new NotificationDTO();
+					notificationDTOObj.setAction("Interview Scheduled");
+					notificationDTOObj.setMessage("Interview scheduled for job id :"+application.getId()+job.getJobTitle());
+					notificationDTOObj.setUserId(application.getApplicantId());
+					notificationDTOObj.setRoute("/job-history");
+				
+					notificationService.sendNotification(notificationDTOObj);
+					
+				}
 			}
 			return x;
 		}).collect(Collectors.toList());

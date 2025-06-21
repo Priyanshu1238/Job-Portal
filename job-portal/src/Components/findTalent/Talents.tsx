@@ -46,7 +46,7 @@ const Talents = () => {
     <div className="px-5">
         <div className="flex justify-between">
             <div className="text-2xl font-semibold">Talents</div>
-            <Sort/>
+            
         
         </div>
         <div className="mt-10 flex flex-wrap gap-5 justify-around">

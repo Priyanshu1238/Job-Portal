@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfile } from "../../Services/ProfileService";
 import { setProfile } from "../../Slices/ProfileSlice";
+import NotificationManager from "./NotificationManager";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Header = () => {
   // const profile = useSelector((state: any) => state.profile);
   useEffect(() => {
       // console.log(profile)
+      if(!user?.id) return
       getProfile(user.profileId).then((data: any) => {
           dispatch(setProfile(data));
           // console.log(data);
@@ -23,11 +25,11 @@ const Header = () => {
       }).catch((err) => {
           console.log(err);
       });
-  }, [])
+  }, [user])
   const location=useLocation();
   return (
-    location.pathname!="/signup" &&
-    location.pathname!="/login"?
+   ( location.pathname!="/signup" &&
+    location.pathname!="/login")?
     <div className="w-full bg-mine-shaft-800 px-6 text-white flex justify-between items-center p-3  font-sans">
       <div>
         <div className="text-2xl font-semibold flex gap-2 items-center text-bright-sun-400">
@@ -50,11 +52,7 @@ const Header = () => {
         {/* <div className="bg-mine-shaft-700 p-1.5 rounded-full">
           <FontAwesomeIcon icon={faGear} size="lg" /> 
         </div> */}
-        <div className="bg-mine-shaft-700 p-1.5 rounded-full">
-          <Indicator color="brightSun.4" size={8} offset={6} processing>
-            <FontAwesomeIcon icon={faBell} size="lg" /> {/* Replacing Tabler Icon */}
-          </Indicator>
-        </div>
+        {user?<NotificationManager/>:<></>}
       </div>
     </div> :<></>
   );

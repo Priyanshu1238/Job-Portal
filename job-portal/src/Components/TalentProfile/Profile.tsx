@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
+import { faBriefcase, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button, Divider } from "@mantine/core"
 import ExpCard from "./ExpCard"
@@ -33,9 +33,9 @@ const Profile = (props:any) => {
                 <div className="text-xl flex ">{profile?.jobTitle} &bull; {profile?.company}</div>
                 <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
                     <FontAwesomeIcon icon={faMapMarkerAlt}/> {profile?.location}
-                
-
-
+            </div>
+            <div className="text-lg flex gap-1 items-center text-mine-shaft-300">
+                    <FontAwesomeIcon icon={faBriefcase}/>Experience: {profile?.totalExp} years
             </div>
         </div>
         <Divider size="xs" my="lg"/>

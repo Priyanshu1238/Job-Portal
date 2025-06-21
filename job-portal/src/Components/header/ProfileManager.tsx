@@ -15,11 +15,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../Slices/UserSlice';
 
 export const ProfileManager = () => {
+    const navigate=useNavigate()
     const dispatch=useDispatch();
     const user=useSelector((state:any)=>state.user);
     const [opened, setOpened] = useState(false);
@@ -27,6 +28,7 @@ export const ProfileManager = () => {
     const handleLogout=()=>{
 
         dispatch(removeUser());
+        navigate("/")
     }
     const profile=useSelector((state:any)=>state.profile)
     return (

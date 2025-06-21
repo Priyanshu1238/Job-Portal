@@ -1,9 +1,18 @@
 // import React from 'react'
 
-import { Link, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { Link, useLocation, useSearchParams } from "react-router-dom"
 
 const NavLinks = () => {
-  const links=[
+  const user=useSelector((state:any)=>state.user)
+  let links: any[] = [];
+  if(user==null)
+  {
+    links=[
+    {name:"Find Jobs",url:"find-jobs"},
+    {name:"Find Talent",url:"find-talent"},]
+  }else{
+    links=[
     {name:"Find Jobs",url:"find-jobs"},
     {name:"Find Talent",url:"find-talent"},
     {name:"Post Job",url:"post-job"},
@@ -11,6 +20,7 @@ const NavLinks = () => {
     {name:"Job History" ,url:"job-history"},
     // {name:"signup",url:"signup"}
   ]
+  }
   const location=useLocation()
   return (
     <div className="flex gap-5 h-full items-center bg-mine-shaft-700 rounded-full p-3 border border-bright-sun-400">
