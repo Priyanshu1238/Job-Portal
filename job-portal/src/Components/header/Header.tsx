@@ -2,30 +2,46 @@ import {  Button, Indicator } from "@mantine/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faFileLines, faGear } from "@fortawesome/free-solid-svg-icons"; // Import icons
 import NavLinks from "./NavLinks";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ProfileManager } from "./ProfileManager";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getProfile } from "../../Services/ProfileService";
 import { setProfile } from "../../Slices/ProfileSlice";
 import NotificationManager from "./NotificationManager";
+import { jwtDecode } from "jwt-decode";
+import { setUser } from "../../Slices/UserSlice";
+import { isEmail } from "@mantine/form";
+import { setupResponseInterceptor } from "../../Interceptor/AxiosInterceptor";
 
 const Header = () => {
   const dispatch = useDispatch();
 
   const user = useSelector((state: any) => state.user);
+  const token=useSelector((state:any)=>state.jwt);
   // const profile = useSelector((state: any) => state.profile);
+  const navigate=useNavigate()
+  useEffect(()=>{
+    setupResponseInterceptor(navigate);
+    
+  },[navigate])
   useEffect(() => {
       // console.log(profile)
-      if(!user?.id) return
-      getProfile(user.profileId).then((data: any) => {
+    if(token!=""){
+      const decode=jwtDecode(localStorage.getItem("token")||"");
+      dispatch(setUser({...decode,email:decode.sub}));
+
+      }
+      if(!user) return;
+      
+      getProfile(user?.profileId).then((data: any) => {
           dispatch(setProfile(data));
           // console.log(data);
 
       }).catch((err) => {
           console.log(err);
       });
-  }, [user])
+  }, [token,navigate])
   const location=useLocation();
   return (
    ( location.pathname!="/signup" &&

@@ -5,13 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button, LoadingOverlay, PasswordInput, TextInput } from "@mantine/core"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { loginUser } from "../../Services/UserService"
 import { loginValidation } from "../../Services/FormValidation"
 import { notifications } from "@mantine/notifications"
 import { useDisclosure } from "@mantine/hooks"
 import ResetPassword from "./ResetPassword"
 import { useDispatch } from "react-redux"
 import { setUser } from "../../Slices/UserSlice"
+
+import { setJwt } from "../../Slices/JwtSlice"
+import { loginUser } from "../../Services/AuthServices"
+import { jwtDecode } from 'jwt-decode';
+
 
 
 const Login = () => {
@@ -41,7 +45,7 @@ setFormError({...formError,[event.target.name]:""});
         if(valid){
             setLoading(true);
             loginUser(data).then((res) => {
-                console.log(res);
+                // console.log(res);
                  notifications.show({
                                     title: 'Great! Your are getting in',
                                     message: 'Redirecting to home page...',
@@ -51,9 +55,14 @@ setFormError({...formError,[event.target.name]:""});
                                     withBorder: true,
                                     className: "!border-green-500"
                                 })
+                                 dispatch(setJwt(res.jwt))
+                                    const decoded=jwtDecode(res.jwt);
+                                    console.log(decoded);
+                                    dispatch(setUser({...decoded,email:decoded.sub}));
                                 setTimeout(() => {
-                                    setLoading(false);
-                                    dispatch(setUser(res));
+                                    // setLoading(false);
+                                    // 
+                                   
                                     navigate("/")
                                 }, 4000)
             }).catch((err) => {

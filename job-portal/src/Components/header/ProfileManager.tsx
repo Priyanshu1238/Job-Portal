@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../Slices/UserSlice';
+import { wayToLogout } from '../../Services/AuthServices';
 
 export const ProfileManager = () => {
     const navigate=useNavigate()
@@ -28,7 +29,8 @@ export const ProfileManager = () => {
     const handleLogout=()=>{
 
         dispatch(removeUser());
-        navigate("/")
+        wayToLogout(navigate);
+        
     }
     const profile=useSelector((state:any)=>state.profile)
     return (

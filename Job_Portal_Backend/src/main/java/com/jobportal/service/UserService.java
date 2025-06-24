@@ -19,5 +19,7 @@ public interface UserService {
 
 	public ResponseDTO changePassword(LoginDTO loginDTO) throws JobPortalException;
 	
+	public UserDTO getUserByEmail(String email) throws JobPortalException;
+	
 	
 }
