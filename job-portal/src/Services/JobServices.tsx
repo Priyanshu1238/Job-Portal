@@ -1,4 +1,5 @@
 import axiosInstance from "../Interceptor/AxiosInterceptor";
+import { axiosPublic } from "../Interceptor/publicAxios";
 
 const base_url="http://localhost:8080/jobs/"
 const postJob=async (job:any)=>{
@@ -16,6 +17,13 @@ const getAllJobs=async ()=>{
     .then(res=>res.data)
     .catch(error=>{throw error;});
 }
+// src/services/JobService.ts
+
+//  const getAllJobs = async () => {
+//   const response = await axiosPublic.get("/jobs/getall");
+//   return response.data;
+// };
+
 const getJob=async (id:any)=>{
     return axiosInstance.get(`/jobs/get/${id}`)
     .then(res=>res.data)

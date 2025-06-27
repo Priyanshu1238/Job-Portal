@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jobportal.dto.AccountType;
 import com.jobportal.dto.ProfileDTO;
 import com.jobportal.entity.Profile;
 import com.jobportal.exception.JobPortalException;
@@ -17,11 +18,12 @@ public class ProfileServiceImpl implements ProfileService{
 	@Autowired
 	private ProfileRepository profileRepo;
 	@Override
-	public Long createProfile(String email,String name) {
+	public Long createProfile(String email,String name,AccountType type) {
 		// TODO Auto-generated method stub
 		Profile profile=new Profile();
 		profile.setEmail(email);
 		profile.setName(name);
+		profile.setAccountType(type);
 		profile.setSkills(new ArrayList<>());
 		profile.setExperiences(new ArrayList<>());
 		profile.setCertifications(new ArrayList<>());

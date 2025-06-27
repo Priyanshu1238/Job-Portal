@@ -67,9 +67,13 @@ const handleClose=()=>{
             <div className="flex mt-6 gap-3 items-center">
                {(props.edit || !applied) &&
                 <Link to={props.edit?`/post-job/${props.id}`:`/apply-job/${props.id}`}>
-                <Button color="brightSun.4" variant="light">{props.close?"Reopen": props.edit?"Edit":"Apply"}</Button>
+                <Button color="brightSun.4" variant="light">{
+                
+                props.close?"Reopen": props.edit?"Edit":"Apply"
+                }</Button>
                 </Link>}
-                {!props.edit && applied &&
+                {!props.edit && applied  &&
+
                 <Button color="green.8" variant="light">Applied</Button>
 
                 }

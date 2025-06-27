@@ -87,6 +87,10 @@ const Info = (props: any) => {
                 </ActionIcon>
                 </div>
             </div>
+             <div className="text-1xl  flex justify-between">{user.accountType==="APPLICANT"?"JOB SEEKER":user.accountType}
+               
+            </div>
+
             {
                 edit ? <><div className="flex gap-10 [&>*]:w-1/2">
                     <SelectInput form={form} name="jobTitle" {...select[0]} />

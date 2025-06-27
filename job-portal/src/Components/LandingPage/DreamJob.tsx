@@ -15,7 +15,7 @@ const DreamJob = () => {
         <TextInput className="bg-mine-shaft-900 rounded-lg p-1 px-2 text-mine-shaft-100 [&_input]:!text-mine-shaft-100" variant="unstyled" label="Job Title" placeholder="Software Engineer"/>
         <TextInput className="bg-mine-shaft-900 rounded-lg p-1 px-2 text-mine-shaft-100 [&_input]:!text-mine-shaft-100" variant="unstyled" label="Job Type" placeholder="Fulltime"/>
         <div className="flex items-center justify-center bg-bright-sun-500 text-mine-shaft-100 rounded-lg hover:bg-bright-sun-700 cursor-pointer">
-          <FontAwesomeIcon icon={faMagnifyingGlass} className="h-10 p-3" />
+         <button><FontAwesomeIcon icon={faMagnifyingGlass} className="h-10 p-3" /></button> 
         </div>
         </div>
 

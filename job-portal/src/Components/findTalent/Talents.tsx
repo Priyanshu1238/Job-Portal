@@ -15,7 +15,10 @@ const Talents = () => {
   useEffect(()=>{
     dispatch(resetFilter())
     getAllProfiles().then((res)=>{
-      setTalents(res);
+      
+       const applicantsOnly = res.filter((p: any) => p.accountType === "APPLICANT");
+      setTalents(applicantsOnly);
+      // setTalents(res);
     }).catch((err)=>{
       console.log(err)
     })

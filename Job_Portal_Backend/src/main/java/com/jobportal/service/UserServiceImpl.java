@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		Optional<User> optional=userRepository.findByEmail(userDTO.getEmail());
 		if(optional.isPresent()) throw new JobPortalException("USER_FOUND");
-		userDTO.setProfileId(profileService.createProfile(userDTO.getEmail(),userDTO.getName()));
+		userDTO.setProfileId(profileService.createProfile(userDTO.getEmail(),userDTO.getName(),userDTO.getAccountType()));
 		userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 		User user=userDTO.toEntity();
 		user=userRepository.save(user);

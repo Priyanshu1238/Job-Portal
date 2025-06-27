@@ -25,8 +25,10 @@ export const AppRoutes=()=>{
           <Routes>
             <Route path='/find-jobs' element={<FindJobs  />} />
             <Route path='/find-talent' element={<FindTalents />} />
-            <Route path='/jobs/:id' element={<JobDescPage />} />
-            <Route path='/apply-job/:id' element={<ApplyJobPage />} />
+            <Route path='/jobs/:id' element={<ProtectedRoute allowedRoles={['APPLICANT']}><JobDescPage /></ProtectedRoute>} />
+            <Route path='/jobs/:id' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><JobDescPage /></ProtectedRoute>} />
+
+            <Route path='/apply-job/:id' element={<ProtectedRoute allowedRoles={['APPLICANT']}><ApplyJobPage /></ProtectedRoute>} />
 
             <Route path='/company/:id' element={<CompanyPage />} />
             <Route path='/posted-job/:id' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><PostedJobPage /></ProtectedRoute>} />
