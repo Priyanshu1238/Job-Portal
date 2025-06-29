@@ -16,6 +16,8 @@ import Footer from "../Components/footer/Footer"
 import { useSelector } from "react-redux"
 import ProtectedRoute from "../Services/ProtectedRoute"
 import PublicRoute from "../Services/PublicRoute"
+import AboutPage from "../Components/footer/AboutPage"
+import ContactPage from "../Components/footer/ContactPage"
 
 export const AppRoutes=()=>{
     const user=useSelector((state:any)=>state.user);
@@ -23,10 +25,14 @@ export const AppRoutes=()=>{
         <div className='relative'>
           <Header />
           <Routes>
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+
+
             <Route path='/find-jobs' element={<FindJobs  />} />
             <Route path='/find-talent' element={<FindTalents />} />
-            <Route path='/jobs/:id' element={<ProtectedRoute allowedRoles={['APPLICANT']}><JobDescPage /></ProtectedRoute>} />
-            <Route path='/jobs/:id' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><JobDescPage /></ProtectedRoute>} />
+            <Route path='/jobs/:id' element={<JobDescPage />}/>
+            {/* <Route path='/jobs/:id' element={<ProtectedRoute allowedRoles={['EMPLOYER']}><JobDescPage /></ProtectedRoute>} /> */}
 
             <Route path='/apply-job/:id' element={<ProtectedRoute allowedRoles={['APPLICANT']}><ApplyJobPage /></ProtectedRoute>} />
 

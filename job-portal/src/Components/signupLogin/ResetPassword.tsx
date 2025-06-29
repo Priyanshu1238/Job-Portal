@@ -82,6 +82,7 @@ const ResetPassword = (props: any) => {
             successNotification("Password Changes", "Login with new Password");
             props.close();
         }).catch((err) => {
+            console.log(err);
             errorNotification("Failed to Reset Password", err.response.data.errorMessage)
 
             console.log(err)

@@ -140,7 +140,7 @@ const Signup = () => {
                 </Group>
             </Radio.Group>
 
-            <Checkbox autoContrast label={<>I accept {' '}<Anchor>Terms and conditions</Anchor></>} />
+            {/* <Checkbox autoContrast label={<>I accept {' '}<Anchor>Terms and conditions</Anchor></>} /> */}
             <Button loading={loading} onClick={handleSubmit} autoContrast variant="filled">Signup</Button>
             <div className="mx-auto">Already have an account?<span onClick={() => { navigate("/login"); setFormError(form); setData(form) }} className="text-bright-sun-400 hover:underline cursor-pointer"> Login</span></div>
         </div></>

@@ -36,9 +36,24 @@ const JobCard = (props:any) => {
                     &#x2022; {props.applicants?props.applicants.length:0} Applicants</div>
                 </div>
             </div>
-            {profile.savedJobs?.includes(props.id)?
+            {/* {
+            profile.savedJobs?.includes(props.id)?
                 <FontAwesomeIcon onClick={handleSaveJob} icon={faBookBookmark} className="cursor-pointer text-bright-sun-400"/>:<FontAwesomeIcon onClick={handleSaveJob} icon={faBookmark} className="cursor-pointer hover:text-bright-sun-400"/>
-            }
+            } */}
+            {profile.accountType === 'APPLICANT' && (
+  profile.savedJobs?.includes(props.id)
+    ? <FontAwesomeIcon
+        onClick={handleSaveJob}
+        icon={faBookBookmark}
+        className="cursor-pointer text-bright-sun-400"
+      />
+    : <FontAwesomeIcon
+        onClick={handleSaveJob}
+        icon={faBookmark}
+        className="cursor-pointer hover:text-bright-sun-400"
+      />
+)}
+
         </div>
         <div className="flex gap-4 justify-around [&>div]:py-1 [&>div]:px-2 [&>div]:bg-mine-shaft-800 [&>div]:text-bright-sun-400 [&>div]:rounded-lg text-sm font-semibold">
             <div>{props.experience}</div>

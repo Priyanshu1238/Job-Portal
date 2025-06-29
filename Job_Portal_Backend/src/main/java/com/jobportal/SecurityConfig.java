@@ -101,7 +101,7 @@ public class SecurityConfig {
           .csrf(csrf -> csrf.disable())
           .cors(cors -> cors.configurationSource(corsConfigurationSource()))
           .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/auth/login","/users/register","/jobs/getall","/profiles/getAll","/users/verifyOtp/**","/users/sendOtp/**").permitAll()
+            .requestMatchers("/auth/login","/users/register","/jobs/getall","/profiles/getAll","/users/verifyOtp/**","/users/changePassword","/users/sendOtp/**").permitAll()
             .requestMatchers(HttpMethod.OPTIONS).permitAll()
             .anyRequest().authenticated()
           )
