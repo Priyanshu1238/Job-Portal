@@ -1,8 +1,8 @@
 // import React from 'react'
 
-import { faArrowAltCircleDown, faArrowAltCircleLeft, faArrowAltCircleRight, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import {  faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Avatar, TextInput } from "@mantine/core"
+import { Avatar } from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 
 const DreamJob = () => {

@@ -2,7 +2,7 @@
 
 
 import { useParams } from "react-router-dom"
-import { talents } from "../../Data/TalentData"
+// import { talents } from "../../Data/TalentData"
 import TalentCard from "../findTalent/TalentCard"
 
 const REcommendTalent = (props:any) => {

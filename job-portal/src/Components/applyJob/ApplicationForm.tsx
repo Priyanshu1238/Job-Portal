@@ -31,7 +31,7 @@ const ApplicationForm = () => {
             SetSubmit(true);
             let resume:any=await getBase64(form.getValues().resume);
             let applicant={...form.getValues(),applicantId:user.id,resume:resume.split(',')[1]};
-            applyJob(id,applicant).then((res)=>{
+            applyJob(id,applicant).then(()=>{
                 SetSubmit(false);
                 successNotification("Success","Apply Successfully");
                 navigate("/job-history");

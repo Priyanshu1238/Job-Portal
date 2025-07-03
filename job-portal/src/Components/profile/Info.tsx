@@ -1,19 +1,17 @@
 // import React from 'react'
 
-import { faBriefcase, faCheck, faMapMarkerAlt, faPencil, faPlus, faSave, faX } from "@fortawesome/free-solid-svg-icons"
+import { faBriefcase, faCheck, faMapMarkerAlt, faPencil,faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ActionIcon, Divider, NumberInput, TagsInput, Textarea } from "@mantine/core"
-import ExpCard from "./ExpCard"
-import CertCard from "./CertCard"
-import { useEffect, useState } from "react"
+import { ActionIcon, NumberInput } from "@mantine/core"
+
+import { useState } from "react"
 
 import fields from "../../Data/Profile"
 import { SelectInput } from "./SelectInput"
-import ExpInput from "./ExpInput"
-import CertInput from "./CertInput"
+
 import { useDispatch, useSelector } from "react-redux"
-import { getProfile } from "../../Services/ProfileService"
-import { hasLength, isEmail, useForm } from '@mantine/form'
+// import { getProfile } from "../../Services/ProfileService"
+import {  useForm } from '@mantine/form'
 import { changeProfile } from "../../Slices/ProfileSlice"
 import { successNotification } from "../../Services/NotificationSErvice"
 
@@ -22,8 +20,9 @@ const Info = (props: any) => {
 
     // const [skills,setSkills]=useState(["React", "SpringBoot", "MongoDB", "HTML", "CSS", "JavaScript", "Node.js", "Express", "MySQL", "Python", "Django", "Figma", "Sketch", "Docker", "AWS"]);
 
-    // const [about, setAbout] = useState(`${props.about}`)
-
+    // const [about, s
+    // etAbout] = useState(`${props.about}`)
+     console.log(props)
     const select = fields;
     const [edit, setEdit] = useState(false);
     const profile = useSelector((state: any) => state.profile);

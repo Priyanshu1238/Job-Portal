@@ -1,20 +1,15 @@
 // import React from 'react'
 
-import { faEdit, faMapMarkerAlt, faPencil, faPlus, faSave } from "@fortawesome/free-solid-svg-icons"
+import { faEdit } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ActionIcon, Divider, FileInput, Overlay, TagsInput, Textarea } from "@mantine/core"
-import ExpCard from "./ExpCard"
-import CertCard from "./CertCard"
-import { useEffect, useState } from "react"
+import { Divider, FileInput, Overlay } from "@mantine/core"
 
-import fields from "../../Data/Profile"
-import { SelectInput } from "./SelectInput"
-import ExpInput from "./ExpInput"
-import CertInput from "./CertInput"
+
+
 import { useDispatch, useSelector } from "react-redux"
-import { getProfile } from "../../Services/ProfileService"
+
 import Info from "./Info"
-import { changeProfile, setProfile } from "../../Slices/ProfileSlice"
+import { changeProfile } from "../../Slices/ProfileSlice"
 import About from "./About"
 import Skills from "./Skills"
 import Experiences from "./Experiences"
@@ -25,11 +20,11 @@ import { getBase64 } from "../../Services/Utilities"
 
 
 
-const Profile = (props: any) => {
+const Profile = (props:any) => {
 
     const dispatch = useDispatch();
-
-    const user = useSelector((state: any) => state.user);
+    console.log(props)
+    // const user = useSelector((state: any) => state.user);
     const profile = useSelector((state: any) => state.profile);
     // useEffect(() => {
     //     console.log(profile)

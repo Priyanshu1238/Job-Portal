@@ -4,29 +4,15 @@ import './App.css'
 import { createTheme,  MantineProvider } from '@mantine/core'
 
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import '@mantine/notifications/styles.css';
 
 import '@mantine/tiptap/styles.css';
-import FindJobs from './pages/FindJobs';
-import FindTalents from './pages/FindTalents';
-import JobDescPage from './pages/JobDescPage';
-import ApplyJobPage from './pages/ApplyJobPage';
-import CompanyPage from './pages/CompanyPage';
-import PostedJobPage from './pages/PostedJobPage';
-import PostJobPage from './pages/PostJobPage';
-import TalentProfile from './pages/TalentProfile';
-import JobHistoryPage from './pages/JobHistoryPage';
-import SignupPage from './pages/SignupPage';
-import ProfilePage from './pages/ProfilePage';
-import HomePage from './pages/HomePage';
-import Header from './Components/header/Header';
-import Footer from './Components/footer/Footer';
+
 import { Notifications } from '@mantine/notifications';
 import Store from './Store';
 import { Provider } from 'react-redux';
-import { getItem } from './Services/LocalStorageService';
+
 import { AppRoutes } from './pages/AppBrowse';
 
 

@@ -1,6 +1,6 @@
 import { Button, Divider } from '@mantine/core'
 // import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 // import REcommendTalent from '../TalentProfile/REcommendTalent'
 // import Profile from '../TalentProfile/Profile'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

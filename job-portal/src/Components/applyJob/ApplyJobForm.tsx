@@ -1,10 +1,8 @@
 // import React from 'react'
 
-import {  faCheck, faPaperclip } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Button, Divider, FileInput, LoadingOverlay, Notification, NumberInput, Textarea, TextInput } from "@mantine/core"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+
+import { Divider} from "@mantine/core"
+
 import ApplicationForm from "./ApplicationForm"
 import { timeAgo } from "../../Services/Utilities"
 

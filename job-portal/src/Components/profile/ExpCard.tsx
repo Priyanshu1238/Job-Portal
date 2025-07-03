@@ -5,8 +5,7 @@ import { useState } from "react"
 import ExpInput from "./ExpInput";
 import { formatDate } from "../../Services/Utilities";
 import { useDispatch, useSelector } from "react-redux";
-import Experiences from "./Experiences";
-import { faL } from "@fortawesome/free-solid-svg-icons";
+
 import { changeProfile } from "../../Slices/ProfileSlice";
 import { successNotification } from "../../Services/NotificationSErvice";
 

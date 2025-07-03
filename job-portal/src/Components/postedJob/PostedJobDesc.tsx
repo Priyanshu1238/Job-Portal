@@ -4,7 +4,7 @@ import { Badge, Tabs } from "@mantine/core"
 // import FindJobs from "../pages/FindJobs"
 // import Jobs from "../FindJobs/Jobs"
 import JobDesc from "../jobDesc/JobDesc"
-import { talents } from "../../Data/TalentData"
+// import { talents } from "../../Data/TalentData"
 import TalentCard from "../findTalent/TalentCard"
 import { useEffect, useState } from "react"
 

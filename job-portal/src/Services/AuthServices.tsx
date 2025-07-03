@@ -1,16 +1,13 @@
-import axios from "axios"
+
 import { removeUser } from "../Slices/UserSlice";
-const base_url="http://localhost:8080/auth/"
+import axiosInstance from "../Interceptor/AxiosInterceptor";
+
 const loginUser=async (login:any)=>{
-    return axios.post(`${base_url}login`,login)
+    return axiosInstance.post(`/auth/login`,login)
     .then(res=>res.data)
     .catch(error=>{throw error;});
 }
-const navigateToLogin=(navigate:any)=>{
-    localStorage.removeItem('token');
-    removeUser();
-    navigate('/login');
-}
+
 
 //self-create
 const wayToLogout=(navigate:any)=>{

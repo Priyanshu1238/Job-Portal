@@ -1,7 +1,7 @@
-import { jwtDecode } from "jwt-decode";
+
 
 import { useSelector } from "react-redux";
-import { Navigate, useSearchParams } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 
 interface PublicRouteProps{
     children:React.JSX.Element;

@@ -1,19 +1,19 @@
-import { faBell, faCheck, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Indicator, Menu, Notification, Stack } from "@mantine/core";
+import { Indicator, Menu, Notification } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
+import {  useNavigate } from "react-router-dom";
 import { getNotification, readNotification } from "../../Services/NotificationIconService";
 
 
 const NotificationManager = () => {
   const navigate=useNavigate()
-    const dispatch=useDispatch();
+    
     const user=useSelector((state:any)=>state.user);
     const [opened, setOpened] = useState(false);
-    const [checked, setChecked] = useState(false);
-    const profile=useSelector((state:any)=>state.profile);
+    
+   
     const [notifications,setNotifications]=useState<any>([]);
     useEffect(()=>{
 
@@ -30,7 +30,7 @@ const NotificationManager = () => {
 const unread=(index:number)=>{
 
   let notificationToBeFilter=[...notifications];
-  notificationToBeFilter=notificationToBeFilter.filter((notificationToBeFilter:any,i:number)=>i!=index)
+  notificationToBeFilter=notificationToBeFilter.filter((i:number)=>i!=index)
   setNotifications(notificationToBeFilter);
   readNotification(notifications[index].id).then((res)=>{
     console.log(res);

@@ -1,7 +1,7 @@
 import axiosInstance from "../Interceptor/AxiosInterceptor";
-import { axiosPublic } from "../Interceptor/publicAxios";
 
-const base_url="http://localhost:8080/jobs/"
+
+
 const postJob=async (job:any)=>{
     return axiosInstance.post(`/jobs/post`,job)
     .then(res=>res.data)

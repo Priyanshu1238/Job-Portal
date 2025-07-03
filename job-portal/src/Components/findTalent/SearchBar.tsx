@@ -9,7 +9,7 @@ import MultiInput from "../FindJobs/MultiInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { searchFields } from "../../Data/TalentData";
-import { useDisclosure } from "@mantine/hooks";
+
 import { useDispatch } from "react-redux";
 import { updateFilter } from "../../Slices/FilterSlice";
 

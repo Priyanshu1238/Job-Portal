@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBriefcase, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 
 const fields=[

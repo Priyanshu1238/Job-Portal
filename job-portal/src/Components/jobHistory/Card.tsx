@@ -37,7 +37,6 @@ const Card: React.FC<CardProps> = ({
   about,
   packageOffered,
   postTime,
-  applied = false,
   interviewing = false,
   offered = false,
   interviewTime,

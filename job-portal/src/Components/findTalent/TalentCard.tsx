@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { faCalendar, faCalendarDays, faHeart, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
+import { faCalendarDays, faHeart, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons"
 // import { faBookBookmark } from "@fortawesome/free-solid-svg-icons/faBookBookmark"
 import { DateInput, TimeInput } from '@mantine/dates';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -8,8 +8,7 @@ import { Avatar, Button, Divider, Modal, Text } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
 import { Link, useParams } from "react-router-dom"
 import { useEffect, useRef, useState } from "react";
-import { profile } from "../../Data/TalentData";
-import { useSelector } from "react-redux";
+
 import { getProfile } from "../../Services/ProfileService";
 import { errorNotification, successNotification } from "../../Services/NotificationSErvice";
 import { changeApplicationStatus } from "../../Services/JobServices";
@@ -42,7 +41,7 @@ const TalentCard = (props: any) => {
 
         // console.log(date)
   
-        changeApplicationStatus(interview).then((res)=>{
+        changeApplicationStatus(interview).then(()=>{
             if(status=="INTERVIEWING")successNotification("Interview Scheduled ","Interview Scheduled successfully");
             else if(status=="OFFERED")successNotification("OFFERED ","Offered has been sent sucessfully");
             else successNotification("Rejected ","Applicant has been rejected");

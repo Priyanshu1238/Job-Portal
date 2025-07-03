@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import { BrowserRouter,  Route, Routes } from "react-router-dom"
 import Header from "../Components/header/Header"
 import FindJobs from "./FindJobs"
 import FindTalents from "./FindTalents"
@@ -13,14 +13,14 @@ import SignupPage from "./SignupPage"
 import ProfilePage from "./ProfilePage"
 import HomePage from "./HomePage"
 import Footer from "../Components/footer/Footer"
-import { useSelector } from "react-redux"
+
 import ProtectedRoute from "../Services/ProtectedRoute"
 import PublicRoute from "../Services/PublicRoute"
 import AboutPage from "../Components/footer/AboutPage"
 import ContactPage from "../Components/footer/ContactPage"
 
 export const AppRoutes=()=>{
-    const user=useSelector((state:any)=>state.user);
+    
    return <BrowserRouter>
         <div className='relative'>
           <Header />

@@ -1,5 +1,5 @@
 import axiosInstance from "../Interceptor/AxiosInterceptor";
-const base_url="http://localhost:8080/users/"
+
 const registerUser=async (user:any)=>{
     return axiosInstance.post(`/users/register`,user)
     .then(res=>res.data)

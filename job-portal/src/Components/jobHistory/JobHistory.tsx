@@ -1,7 +1,7 @@
 // import React from 'react'
 
 import {  Tabs } from "@mantine/core"
-import { jobList } from "../../Data/JobData"
+// import { jobList } from "../../Data/JobData"
 import Card from "./Card"
 import { useEffect, useState } from "react"
 import { getAllJobs } from "../../Services/JobServices"

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 // import { talents } from "../Data/TalentData"
 import { Button } from "@mantine/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

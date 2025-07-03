@@ -2,9 +2,9 @@
 
 import { faAt, faCheck, faLock, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Anchor, Button, Checkbox, Group, LoadingOverlay, PasswordInput, Radio, TextInput } from "@mantine/core"
+import {  Button,  Group, LoadingOverlay, PasswordInput, Radio, TextInput } from "@mantine/core"
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 import { registerUser } from "../../Services/UserService"
 import { signupValidation } from "../../Services/FormValidation"
 import { notifications } from "@mantine/notifications"

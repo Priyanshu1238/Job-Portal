@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom"
+import {  useNavigate, useParams } from "react-router-dom"
 // import PostJob from "../postjob/PostJob"
 import { Button } from "@mantine/core"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

@@ -1,6 +1,6 @@
 // import React from 'react'
 
-import { faAt, faL, faLock } from "@fortawesome/free-solid-svg-icons"
+import { faAt,  faLock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button, Modal, PasswordInput, PinInput, TextInput } from "@mantine/core"
 import { useState } from "react"

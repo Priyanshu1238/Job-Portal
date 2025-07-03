@@ -10,7 +10,7 @@ import { updateFilter } from "../../Slices/FilterSlice";
 
 const SerachBar = () => {
   
-  const fixedLeft=0;
+  
   const dispatch=useDispatch()
   const[value,setValue]=useState<[number,number]>([1,100]);
   

@@ -1,6 +1,6 @@
 
 import axiosInstance from "../Interceptor/AxiosInterceptor";
-const base_url="http://localhost:8080/profiles/"
+
 const getProfile=async (id:any)=>{
     return axiosInstance.get(`/profiles/get/${id}`)
     .then(res=>res.data)

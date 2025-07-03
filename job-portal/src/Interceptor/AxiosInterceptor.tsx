@@ -1,11 +1,14 @@
-import { config } from "@fortawesome/fontawesome-svg-core";
+
 import axios, { InternalAxiosRequestConfig } from "axios";
 
 // import React from 'react'
 const axiosInstance=axios.create({
-    baseURL:'http://localhost:8080',
+    baseURL:import.meta.env.VITE_API_URL,
+    
     
 });
+console.log(import.meta.env.VITE_API_URL);
+
 axiosInstance.interceptors.request.use(
     (config:InternalAxiosRequestConfig)=>{
         const token=localStorage.getItem('token');

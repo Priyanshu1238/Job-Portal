@@ -1,16 +1,13 @@
-import { Menu, Button, Text, Avatar, Switch } from '@mantine/core';
+import { Menu, Avatar, Switch } from '@mantine/core';
 import {
-    faCog,             // IconSettings
+            // IconSettings
     faSearch,          // IconSearch
-    faImage,           // IconPhoto
-    faComment,         // IconMessageCircle
-    faTrash,           // IconTrash
-    faArrowsAltH,       // IconArrowsLeftRight
+  
     faUserCircle,
     faFileText,
     faMoon,
     faSun,
-    faLongArrowAltUp,
+    
     faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
